@@ -1,3 +1,4 @@
+import re
 from flask import Flask, render_template, request, redirect
 from user import User
 
@@ -31,12 +32,24 @@ def delete_user(user_id):
     return redirect('/')
 
 @app.route('/users/<int:user_id>/edit')
-def update_user(user_id):
+def edit_user(user_id):
     data = {
         'id': user_id
     }
     user = User.get_user_by_id(data)
     return render_template('update.html', user = user)
+
+@app.route('/users/<int:user_id>/update', methods=['POST'])
+def update_user(user_id):
+    data = {
+        'id': user_id,
+        'first_name': request.form['first_name'],
+        'last_name': request.form['last_name'],
+        'email': request.form['email']
+    }
+    User.update_user(data)
+    return redirect('/')
+
 
 if __name__=="__main__":
     app.run(debug=True)

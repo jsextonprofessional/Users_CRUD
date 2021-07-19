@@ -46,3 +46,10 @@ class User():
         user = User(result[0])
 
         return user
+
+    @classmethod
+    def update_user(cls, data):
+        
+        query = "UPDATE users SET first_name = %(first_name)s, last_name = %(last_name)s, email = %(email)s WHERE id = %(id)s;"
+
+        connectToMySQL('users_schema').query_db(query, data)
