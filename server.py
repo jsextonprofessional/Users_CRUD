@@ -22,6 +22,13 @@ def process():
 def create_user():
     return render_template('form.html', name=request.form)
 
+@app.route('/users/<int:user_id>/delete')
+def delete_user(user_id):
+    data = {
+        'id': user_id
+    }
+    User.delete_user(data)
+    return redirect('/')
 
 if __name__=="__main__":
     app.run(debug=True)

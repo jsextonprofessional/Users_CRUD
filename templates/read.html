@@ -19,6 +19,7 @@
             <th>Last Name</th>
             <th>Email</th>
             <th>Created At</th>
+            <th>Actions</th>
         </tr>
         {% for user in users %}
         <tr>
@@ -27,6 +28,10 @@
             <td>{{ user.last_name }}</td>
             <td>{{ user.email }}</td>
             <td>{{ user.created_at }}</td>
+            <td>
+                <a href="/users/{{user.id}}/delete">Delete</a>
+                <a href="/users/edit">Edit</a>
+            </td>
         </tr>
         {% endfor %}
     </table>

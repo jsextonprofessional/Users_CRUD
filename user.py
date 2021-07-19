@@ -28,3 +28,9 @@ class User():
         query = "INSERT INTO users (first_name, last_name, email) VALUES (%(first_name)s, %(last_name)s, %(email)s);"
 
         connectToMySQL('users_schema').query_db(query, data)
+
+    @classmethod
+    def delete_user(cls, data):
+        query = "DELETE FROM users WHERE id = %(id)s;"
+
+        connectToMySQL('users_schema').query_db(query, data)
