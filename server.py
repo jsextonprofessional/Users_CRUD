@@ -48,7 +48,15 @@ def update_user(user_id):
         'email': request.form['email']
     }
     User.update_user(data)
-    return redirect('/')
+    return redirect('/users/<int:user_id>/user_card')
+
+@app.route('/users/<int:user_id>/user_card')
+def user_card(user_id):
+    data = {
+        'id':user_id
+    }
+    user = User.get_user_by_id(data)
+    return render_template('user_card.html', user = user)
 
 
 if __name__=="__main__":
