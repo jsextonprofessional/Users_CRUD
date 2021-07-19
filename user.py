@@ -1,3 +1,4 @@
+import re
 from mysqlconnection import connectToMySQL
 
 class User():
@@ -34,3 +35,14 @@ class User():
         query = "DELETE FROM users WHERE id = %(id)s;"
 
         connectToMySQL('users_schema').query_db(query, data)
+
+    @classmethod
+    def get_user_by_id(cls, data):
+
+        query = "SELECT * FROM users WHERE id = %(id)s;"
+
+        result = connectToMySQL('users_schema').query_db(query, data)
+
+        user = User(result[0])
+
+        return user
