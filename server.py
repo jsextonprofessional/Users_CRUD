@@ -48,7 +48,7 @@ def update_user(user_id):
         'email': request.form['email']
     }
     User.update_user(data)
-    return redirect('/users/<int:user_id>/user_card')
+    return redirect(f'/users/{user_id}/user_card')
 
 @app.route('/users/<int:user_id>/user_card')
 def user_card(user_id):
